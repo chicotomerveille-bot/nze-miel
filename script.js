@@ -2,7 +2,7 @@
 const CFG = window.NZE_CONFIG || {};
 const API_BASE = (CFG.API_BACKEND_URL || window.location.origin) + '/api';
 const EXTRA_HEADERS = CFG.API_HEADERS || {};
-const WA_NUMBER = '229XXXXXXXX';
+const WA_NUMBER = CFG.WHATSAPP_NUMBER || '229XXXXXXXX';
 
 // ─── NAV SCROLL ───
 const nav = document.getElementById('nav');
@@ -40,15 +40,18 @@ function animateCounter(el, target) {
   }, 25);
 }
 
-new IntersectionObserver((entries) => {
+const metricsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       animateCounter(document.getElementById('clientCount'), 843);
       animateCounter(document.getElementById('potCount'), 3200);
-      observer.unobserve(entry.target);
+      metricsObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.5 }).observe(document.querySelector('.hero-metrics'));
+}, { threshold: 0.5 });
+
+const metricsTarget = document.querySelector('.hero-metrics');
+if (metricsTarget) metricsObserver.observe(metricsTarget);
 
 // ─── WHATSAPP COMMANDE ───
 document.querySelectorAll('.btn-wa').forEach(btn => {
