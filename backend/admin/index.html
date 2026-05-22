@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nzé – Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #F5F2ED; color: #1A120B; }
+  .app { display: flex; min-height: 100vh; }
+  .sidebar { width: 220px; background: #1A120B; color: #fff; padding: 24px 0; flex-shrink: 0; position: sticky; top: 0; height: 100vh; }
+  .sidebar h2 { font-size: 18px; padding: 0 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .sidebar h2 span { color: #EF9F27; }
+  .sidebar nav { padding: 12px 0; }
+  .sidebar nav a { display: flex; align-items: center; gap: 10px; padding: 11px 20px; color: rgba(255,255,255,0.35); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.15s; border-left: 3px solid transparent; }
+  .sidebar nav a:hover, .sidebar nav a.active { color: #fff; background: rgba(255,255,255,0.02); border-left-color: #EF9F27; }
+  .main { flex: 1; padding: 28px 32px; overflow-y: auto; max-height: 100vh; }
+  .main h1 { font-size: 22px; margin-bottom: 20px; font-weight: 600; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .stat-card { background: #fff; border-radius: 10px; padding: 18px 20px; border: 1px solid #EDE3D6; }
+  .stat-card .num { font-size: 26px; font-weight: 700; display: block; }
+  .stat-card .lbl { font-size: 11px; color: #8A7A6A; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+  .tab { display: none; }
+  .tab.active { display: block; }
+  .toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+  .toolbar select, .toolbar input { padding: 9px 14px; border: 1.5px solid #EDE3D6; border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; background: #fff; }
+  .toolbar select:focus, .toolbar input:focus { border-color: #EF9F27; outline: none; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #EDE3D6; font-size: 13px; }
+  th { background: #FAF8F6; font-weight: 600; color: #8A7A6A; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; padding: 11px 14px; text-align: left; }
+  td { padding: 11px 14px; border-bottom: 1px solid #EDE3D6; }
+  tr:last-child td { border-bottom: none; }
+  .b { display: inline-block; padding: 2px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+  .b-pending { background: #FFF3E0; color: #E65100; }
+  .b-confirmed { background: #E3F2FD; color: #1565C0; }
+  .b-delivered { background: #E8F5E9; color: #2E7D32; }
+  .b-cancelled { background: #FBE9E7; color: #BF360C; }
+  .b-active { background: #E8F5E9; color: #2E7D32; }
+  .b-vip { background: #FFF8E1; color: #EF9F27; }
+  .btn { padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.15s; }
+  .btn-p { background: #EF9F27; color: #1A120B; }
+  .btn-p:hover { background: #D4891A; }
+  .btn-s { background: #2E7D32; color: #fff; }
+  .btn-s:hover { background: #1B5E20; }
+  .btn-d { background: #C62828; color: #fff; }
+  .btn-d:hover { background: #B71C1C; }
+  .btn-o { background: transparent; border: 1px solid #EDE3D6; }
+  .btn-o:hover { border-color: #EF9F27; }
+  .refresh { font-size: 12px; color: #8A7A6A; margin-left: auto; }
+  .error-msg { color: #C62828; padding: 20px; text-align: center; background: #fff; border-radius: 10px; border: 1px solid #FFCDD2; }
+  @media (max-width: 768px) {
+    .app { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: static; padding: 16px; }
+    .sidebar nav { display: flex; flex-wrap: wrap; gap: 2px; }
+    .sidebar nav a { padding: 8px 14px; border-left: none; border-radius: 8px; font-size: 13px; }
+    .sidebar nav a.active { background: rgba(255,255,255,0.06); }
+    .main { padding: 20px; max-height: none; }
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <h2>Nzé <span>Admin</span></h2>
+    <nav>
+      <a href="#" class="active" data-tab="dashboard">📊 Dashboard</a>
+      <a href="#" data-tab="orders">📋 Commandes</a>
+      <a href="#" data-tab="products">📦 Produits</a>
+      <a href="#" data-tab="subscriptions">🔄 Abonnements</a>
+      <a href="#" data-tab="customers">👥 Clients</a>
+      <a href="/" target="_blank" style="margin-top:20px;opacity:0.3;">← Site public</a>
+    </nav>
+  </aside>
+  <main class="main">
+    <div class="tab active" id="tab-dashboard">
+      <h1>📊 Dashboard <span class="refresh" id="dashTime"></span></h1>
+      <div class="stats" id="dashboardStats"></div>
+      <h2 style="font-size:15px;margin-bottom:12px;font-weight:600;">Dernières commandes</h2>
+      <table><thead><tr><th>Client</th><th>Produit</th><th>Montant</th><th>Statut</th><th>Date</th></tr></thead><tbody id="recentOrders"></tbody></table>
+    </div>
+    <div class="tab" id="tab-orders">
+      <h1>📋 Commandes</h1>
+      <div class="toolbar">
+        <select id="orderFilter"><option value="">Tous</option><option value="pending">En attente</option><option value="confirmed">Confirmée</option><option value="delivered">Livrée</option><option value="cancelled">Annulée</option></select>
+        <span class="refresh" id="orderTime"></span>
+      </div>
+      <div id="ordersContainer"></div>
+    </div>
+    <div class="tab" id="tab-products">
+      <h1>📦 Produits</h1>
+      <div id="productsContainer"></div>
+    </div>
+    <div class="tab" id="tab-subscriptions">
+      <h1>🔄 Abonnements</h1>
+      <div class="toolbar">
+        <select id="subFilter"><option value="">Tous</option><option value="active">Actifs</option><option value="paused">En pause</option><option value="cancelled">Annulés</option></select>
+        <span class="refresh" id="subTime"></span>
+      </div>
+      <div id="subsContainer"></div>
+    </div>
+    <div class="tab" id="tab-customers">
+      <h1>👥 Clients</h1>
+      <div class="toolbar">
+        <input type="text" id="customerSearch" placeholder="Rechercher..." style="width:260px;">
+      </div>
+      <div id="customersContainer"></div>
+    </div>
+  </main>
+</div>
+<script>
+const API = '';
+let refreshInterval = null;
+
+function api(path) {
+  return fetch(API + path).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+}
+
+// ─── Navigation ───
+document.querySelectorAll('[data-tab]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('[data-tab]').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + link.dataset.tab).classList.add('active');
+    if (refreshInterval) clearInterval(refreshInterval);
+    if (link.dataset.tab === 'dashboard') startAutoRefresh(loadDashboard, 8000);
+    else if (link.dataset.tab === 'orders') startAutoRefresh(loadOrders, 8000);
+    else if (link.dataset.tab === 'subscriptions') startAutoRefresh(loadSubs, 8000);
+  });
+});
+
+function startAutoRefresh(fn, ms) {
+  fn();
+  refreshInterval = setInterval(fn, ms);
+}
+
+// ─── Dashboard ───
+async function loadDashboard() {
+  document.getElementById('dashTime').textContent = '🔄 ' + new Date().toLocaleTimeString('fr-FR');
+  try {
+    const [orders, subs] = await Promise.all([api('/api/orders/stats'), api('/api/subscriptions/stats')]);
+    document.getElementById('dashboardStats').innerHTML = `
+      <div class="stat-card"><span class="num">${orders.total}</span><span class="lbl">Commandes</span></div>
+      <div class="stat-card"><span class="num">${orders.pending}</span><span class="lbl">En attente</span></div>
+      <div class="stat-card"><span class="num">${Number(orders.revenue).toLocaleString()} F</span><span class="lbl">Revenu total</span></div>
+      <div class="stat-card"><span class="num">${Number(orders.monthRevenue).toLocaleString()} F</span><span class="lbl">Revenu du mois</span></div>
+      <div class="stat-card"><span class="num">${subs.total}</span><span class="lbl">Abonnés</span></div>
+      <div class="stat-card"><span class="num">${Number(subs.monthlyRevenue).toLocaleString()} F</span><span class="lbl">Revenu abos/mois</span></div>
+    `;
+  } catch (e) {
+    document.getElementById('dashboardStats').innerHTML = `<div class="error-msg">❌ Impossible de charger les stats</div>`;
+  }
+  try {
+    const recent = await api('/api/orders?limit=5');
+    document.getElementById('recentOrders').innerHTML = recent.map(o => `
+      <tr><td>${esc(o.customer_name)}</td><td>${esc(o.product_name)}</td><td>${o.total ? Number(o.total).toLocaleString()+' F' : '—'}</td><td><span class="b b-${o.status}">${o.status}</span></td><td>${fmtDate(o.created_at)}</td></tr>
+    `).join('');
+  } catch (e) {
+    document.getElementById('recentOrders').innerHTML = `<tr><td colspan="5" style="text-align:center;color:#8A7A6A;">Aucune commande</td></tr>`;
+  }
+}
+
+// ─── Commandes ───
+async function loadOrders() {
+  document.getElementById('orderTime').textContent = '🔄 ' + new Date().toLocaleTimeString('fr-FR');
+  try {
+    const status = document.getElementById('orderFilter').value;
+    const url = status ? `/api/orders?status=${status}` : '/api/orders';
+    const orders = await api(url);
+    document.getElementById('ordersContainer').innerHTML = orders.length ? `
+      <table><thead><tr><th>ID</th><th>Client</th><th>Tél</th><th>Produit</th><th>Qté</th><th>Total</th><th>Statut</th><th>Date</th><th>Action</th></tr></thead><tbody>
+      ${orders.map(o => `<tr>
+        <td>#${o.id}</td><td>${esc(o.customer_name)}</td><td>${esc(o.customer_phone)}</td><td>${esc(o.product_name)}</td>
+        <td>${o.quantity}</td><td>${o.total ? Number(o.total).toLocaleString()+' F' : '—'}</td>
+        <td><span class="b b-${o.status}">${o.status}</span></td>
+        <td>${fmtDate(o.created_at)}</td>
+        <td>${o.status === 'pending' ? `<button class="btn btn-s" onclick="updOrder(${o.id},'confirmed')">✓</button>` : ''}
+            ${o.status === 'confirmed' ? `<button class="btn btn-s" onclick="updOrder(${o.id},'delivered')">Livrer</button>` : ''}
+            ${!['cancelled','delivered'].includes(o.status) ? `<button class="btn btn-d" onclick="updOrder(${o.id},'cancelled')">×</button>` : ''}
+        </td></tr>`).join('')}
+      </tbody></table>` : `<p style="color:#8A7A6A;text-align:center;padding:40px;">Aucune commande ${status ? 'avec ce statut' : ''}</p>`;
+  } catch (e) {
+    document.getElementById('ordersContainer').innerHTML = `<div class="error-msg">❌ Erreur chargement commandes</div>`;
+  }
+}
+
+async function updOrder(id, status) {
+  try {
+    await fetch(`${API}/api/orders/${id}`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({status}) });
+    loadOrders(); loadDashboard();
+  } catch (e) { alert('Erreur: ' + e.message); }
+}
+
+document.getElementById('orderFilter')?.addEventListener('change', loadOrders);
+
+// ─── Produits ───
+async function loadProducts() {
+  try {
+    const products = await api('/api/products');
+    document.getElementById('productsContainer').innerHTML = `
+      <table><thead><tr><th>ID</th><th>Nom</th><th>Taille</th><th>Boutique</th><th>Abonné</th><th>Pro</th><th>⭐</th><th>Actif</th></tr></thead><tbody>
+      ${products.map(p => `<tr>
+        <td>#${p.id}</td><td><strong>${esc(p.name)}</strong></td><td>${p.size_ml}ml</td>
+        <td>${p.price_boutique ? Number(p.price_boutique).toLocaleString()+' F' : '—'}</td>
+        <td>${p.price_abonne ? Number(p.price_abonne).toLocaleString()+' F' : '—'}</td>
+        <td>${p.price_pro ? Number(p.price_pro).toLocaleString()+' F' : '—'}</td>
+        <td>${p.is_featured ? '⭐' : ''}</td>
+        <td>${p.active ? '✅' : '❌'}</td>
+      </tr>`).join('')}
+      </tbody></table>`;
+  } catch (e) {
+    document.getElementById('productsContainer').innerHTML = `<div class="error-msg">❌ Erreur chargement produits</div>`;
+  }
+}
+
+// ─── Abonnements ───
+async function loadSubs() {
+  document.getElementById('subTime').textContent = '🔄 ' + new Date().toLocaleTimeString('fr-FR');
+  try {
+    const status = document.getElementById('subFilter').value;
+    const url = status ? `/api/subscriptions?status=${status}` : '/api/subscriptions';
+    const subs = await api(url);
+    document.getElementById('subsContainer').innerHTML = subs.length ? `
+      <table><thead><tr><th>Client</th><th>Format</th><th>Prix</th><th>Livré</th><th>Prochaine</th><th>Statut</th><th>Action</th></tr></thead><tbody>
+      ${subs.map(s => `<tr>
+        <td>${esc(s.customer_name)}</td><td>${s.size_ml}ml</td><td>${Number(s.price).toLocaleString()} F</td>
+        <td>${s.deliveries_made}</td>
+        <td>${s.next_delivery ? fmtDate(s.next_delivery) : '—'}</td>
+        <td><span class="b b-${s.status}">${s.status}</span></td>
+        <td>${s.status === 'active' ? `<button class="btn btn-s" onclick="deliverSub(${s.id})">Livrer</button> <button class="btn btn-d" onclick="cancelSub(${s.id})">Stop</button>` : ''}</td>
+      </tr>`).join('')}
+      </tbody></table>` : `<p style="color:#8A7A6A;text-align:center;padding:40px;">Aucun abonnement</p>`;
+  } catch (e) {
+    document.getElementById('subsContainer').innerHTML = `<div class="error-msg">❌ Erreur chargement abonnements</div>`;
+  }
+}
+
+async function deliverSub(id) {
+  if (!confirm('Marquer cette livraison comme effectuée ?')) return;
+  try {
+    await fetch(`${API}/api/subscriptions/${id}/deliver`, { method: 'POST' });
+    loadSubs(); loadDashboard();
+  } catch (e) { alert('Erreur: ' + e.message); }
+}
+
+async function cancelSub(id) {
+  if (!confirm('Annuler cet abonnement ?')) return;
+  try {
+    await fetch(`${API}/api/subscriptions/${id}`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({status:'cancelled'}) });
+    loadSubs();
+  } catch (e) { alert('Erreur: ' + e.message); }
+}
+
+document.getElementById('subFilter')?.addEventListener('change', loadSubs);
+
+// ─── Clients ───
+let customerTimer = null;
+async function loadCustomers() {
+  try {
+    const search = document.getElementById('customerSearch').value;
+    const url = search ? `/api/customers?search=${encodeURIComponent(search)}` : '/api/customers';
+    const customers = await api(url);
+    document.getElementById('customersContainer').innerHTML = customers.length ? `
+      <table><thead><tr><th>Nom</th><th>Téléphone</th><th>Ville</th><th>Quartier</th><th>Achats</th><th>VIP</th><th>Depuis</th></tr></thead><tbody>
+      ${customers.map(c => `<tr>
+        <td><strong>${esc(c.name)}</strong></td><td>${esc(c.phone)}</td><td>${esc(c.city)}</td>
+        <td>${c.neighborhood || '—'}</td><td>${c.purchase_count}</td>
+        <td>${c.is_vip ? '<span class="b b-vip">👑 VIP</span>' : '—'}</td>
+        <td>${fmtDate(c.created_at)}</td>
+      </tr>`).join('')}
+      </tbody></table>` : `<p style="color:#8A7A6A;text-align:center;padding:40px;">Aucun client trouvé</p>`;
+  } catch (e) {
+    document.getElementById('customersContainer').innerHTML = `<div class="error-msg">❌ Erreur chargement clients</div>`;
+  }
+}
+
+document.getElementById('customerSearch')?.addEventListener('input', () => {
+  clearTimeout(customerTimer);
+  customerTimer = setTimeout(loadCustomers, 300);
+});
+
+// ─── Utilitaires ───
+function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+function fmtDate(d) { try { return new Date(d).toLocaleDateString('fr-FR', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); } catch(e) { return d || '—'; } }
+
+// ─── Démarrage ───
+startAutoRefresh(loadDashboard, 8000);
+loadProducts();
+loadCustomers();
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nzé – Outil d'administration</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <h1>Nzé<span>.</span></h1>
+      <div class="role">Administration</div>
+    </div>
+    <nav>
+      <a href="#" class="active" data-tab="dashboard">📊 Dashboard <span class="badge" id="badgeOrders" style="display:none;">0</span></a>
+      <a href="#" data-tab="orders">📋 Commandes <span class="badge" id="badgeOrders2" style="display:none;">0</span></a>
+      <a href="#" data-tab="products">📦 Produits</a>
+      <a href="#" data-tab="subscriptions">🔄 Abonnements</a>
+      <a href="#" data-tab="customers">👥 Clients</a>
+    </nav>
+    <div class="sidebar-foot">
+      <a href="/" target="_blank">← Site public</a> &middot;
+      <a href="#" id="logoutBtn">Déconnexion</a>
+    </div>
+  </aside>
+  <main class="main">
+
+    <!-- Dashboard -->
+    <div class="tab active" id="tab-dashboard">
+      <div class="main-head">
+        <h2>📊 Dashboard</h2>
+        <span class="time" id="dashTime"></span>
+      </div>
+      <div class="stats" id="dashboardStats"></div>
+      <h3 style="font-size:15px;margin-bottom:12px;font-weight:600;">Dernières commandes</h3>
+      <div class="table-wrap">
+        <table><thead><tr>
+          <th>Client</th><th>Téléphone</th><th>Produit</th><th>Montant</th><th>Statut</th><th>Date</th><th>Action</th>
+        </tr></thead><tbody id="recentOrders"></tbody></table>
+      </div>
+    </div>
+
+    <!-- Commandes -->
+    <div class="tab" id="tab-orders">
+      <div class="main-head">
+        <h2>📋 Commandes</h2>
+        <span class="time" id="orderTime"></span>
+      </div>
+      <div class="toolbar">
+        <select id="orderFilter">
+          <option value="">Toutes les commandes</option>
+          <option value="pending">⏳ En attente</option>
+          <option value="confirmed">✅ Confirmées</option>
+          <option value="delivered">📦 Livrées</option>
+          <option value="cancelled">✕ Annulées</option>
+        </select>
+        <div class="spacer"></div>
+        <button class="refresh-btn" onclick="loadOrders()">🔄 Actualiser</button>
+      </div>
+      <div id="ordersContainer"></div>
+    </div>
+
+    <!-- Produits -->
+    <div class="tab" id="tab-products">
+      <div class="main-head">
+        <h2>📦 Produits</h2>
+      </div>
+      <div id="productsContainer"></div>
+    </div>
+
+    <!-- Abonnements -->
+    <div class="tab" id="tab-subscriptions">
+      <div class="main-head">
+        <h2>🔄 Abonnements</h2>
+        <span class="time" id="subTime"></span>
+      </div>
+      <div class="toolbar">
+        <select id="subFilter">
+          <option value="">Tous les abonnements</option>
+          <option value="active">✅ Actifs</option>
+          <option value="paused">⏸ En pause</option>
+          <option value="cancelled">✕ Annulés</option>
+        </select>
+        <div class="spacer"></div>
+        <button class="refresh-btn" onclick="loadSubs()">🔄 Actualiser</button>
+      </div>
+      <div id="subsContainer"></div>
+    </div>
+
+    <!-- Clients -->
+    <div class="tab" id="tab-customers">
+      <div class="main-head">
+        <h2>👥 Clients</h2>
+      </div>
+      <div class="toolbar">
+        <input type="text" id="customerSearch" placeholder="Rechercher un client…" style="width:280px;">
+        <div class="spacer"></div>
+        <button class="refresh-btn" onclick="loadCustomers()">🔄 Actualiser</button>
+      </div>
+      <div id="customersContainer"></div>
+    </div>
+
+  </main>
+</div>
+<script src="../config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

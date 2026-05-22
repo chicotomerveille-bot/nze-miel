@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Nzé – Miel 100% naturel du Bénin | Pur, traçable, jamais coupé</title>
+<meta name="description" content="Nzé vous livre du miel 100% naturel du Bénin, traçable de la ruche à votre table. Abonnement mensuel disponible à Cotonou, Porto-Novo, Parakou.">
+<meta name="keywords" content="miel naturel Bénin, miel pur, miel bio Bénin, abonnement miel, miel Cotonou, miel traçable">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- === BANNIÈRE PROMO === -->
+<div class="topbar" id="topbar">
+  <p>🎉 Offre lancement : <strong>250ml offert</strong> avec tout achat d'1 litre. <a href="#boutique" class="topbar-link">J'en profite →</a></p>
+  <button class="topbar-close" id="topbarClose" aria-label="Fermer">×</button>
+</div>
+
+<!-- === NAV === -->
+<nav class="nav" id="nav">
+  <div class="nav-inner container">
+    <a href="/" class="logo">
+      <span class="logo-m">Nzé</span>
+      <span class="logo-s">Miel du Bénin</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="/" class="active">Accueil</a>
+      <a href="#boutique">Boutique</a>
+      <a href="#abonnement">Abonnement</a>
+      <a href="#apropos">Histoire</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/229XXXXXXXX?text=Bonjour%20Nz%C3%A9%20!%20Je%20souhaite%20commander." class="nav-wa" target="_blank">WhatsApp</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- === HERO === -->
+<header class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-shape hero-bg-shape--1"></div>
+    <div class="hero-bg-shape hero-bg-shape--2"></div>
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <span class="tag tag--gold">🇧🇯 Miel 100% béninois</span>
+      <h1>
+        <span class="h1-l">Le vrai miel du Bénin,</span>
+        <span class="h1-l h1-accent">directement de la ruche.</span>
+      </h1>
+      <p class="hero-p">Pur, traçable, jamais coupé au sucre. Récolté dans les savanes du Borgou et livré chez vous à Cotonou, Porto-Novo et Parakou.</p>
+      <div class="hero-actions">
+        <a href="#boutique" class="btn btn-primary">Commander <span class="btn-arr">→</span></a>
+        <a href="#abonnement" class="btn btn-outline">S'abonner et économiser</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="hm">
+          <span class="hm-num" id="clientCount">0</span>
+          <span class="hm-lbl">clients satisfaits</span>
+        </div>
+        <div class="hm">
+          <span class="hm-num" id="potCount">0</span>
+          <span class="hm-lbl">pots livrés</span>
+        </div>
+        <div class="hm">
+          <span class="hm-num">4.9</span>
+          <span class="hm-lbl">★ note moyenne</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-produit">
+        <div class="hero-produit-badge">⭐ Produit vedette</div>
+        <div class="hero-produit-body">
+          <div class="hero-produit-picto">🍯</div>
+          <h3>Miel Nzé 500ml</h3>
+          <div class="hero-produit-prix">
+            <span class="hero-prix-abonne">3 200 FCFA</span>
+            <span class="hero-prix-marche">4 000 FCFA</span>
+          </div>
+          <p class="hero-produit-abonnement">Prix abonné · Livraison incluse</p>
+          <a href="https://wa.me/229XXXXXXXX?text=Bonjour%20Nz%C3%A9%20!%20Je%20souhaite%20commander%20le%20miel%20500ml." class="btn btn-primary btn-sm" target="_blank">Commander sur WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- === MARQUES / MÉDIAS === -->
+<section class="media-bar">
+  <div class="container">
+    <p>Ils parlent de nous</p>
+    <div class="media-list">
+      <span>Le Béninois</span>
+      <span>Food & Sens</span>
+      <span>La Gazette</span>
+      <span>Bénin Bio</span>
+      <span>Elle Cotonou</span>
+    </div>
+  </div>
+</section>
+
+<!-- === BOUTIQUE === -->
+<section class="section" id="boutique">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="tag">Notre boutique</span>
+        <h2>Du miel pur, dans tous les formats.</h2>
+      </div>
+      <p class="sec-p">Chaque pot est traçable : vous savez de quelle région, de quel apiculteur et de quelle récolte il provient.</p>
+    </div>
+
+    <div class="produits-grid">
+      <!-- 250ml -->
+      <div class="prod-card" data-format="250ml">
+        <div class="prod-top">
+          <span class="prod-emoji">🍯</span>
+        </div>
+        <div class="prod-body">
+          <h3>Nzé 250ml</h3>
+          <p>Idéal pour découvrir ou pour offrir.</p>
+          <div class="prod-prix-row">
+            <div class="prod-prix-box">
+              <span class="prod-label">Prix boutique</span>
+              <span class="prod-prix">2 500 FCFA</span>
+            </div>
+            <div class="prod-prix-box prod-prix-box--abo">
+              <span class="prod-label">Abonné</span>
+              <span class="prod-prix">1 800 FCFA</span>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-wa" data-produit="Nzé 250ml" data-prix="2500">
+            Commander via WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <!-- 500ml (VEDETTE) -->
+      <div class="prod-card prod-card--star" data-format="500ml">
+        <div class="prod-top">
+          <span class="prod-star">⭐ Vedette</span>
+          <span class="prod-emoji">🍯</span>
+        </div>
+        <div class="prod-body">
+          <h3>Nzé 500ml</h3>
+          <p>Le format familial par excellence. Notre best-seller.</p>
+          <div class="prod-prix-row">
+            <div class="prod-prix-box">
+              <span class="prod-label">Prix boutique</span>
+              <span class="prod-prix">4 000 FCFA</span>
+            </div>
+            <div class="prod-prix-box prod-prix-box--abo">
+              <span class="prod-label">Abonné</span>
+              <span class="prod-prix">3 200 FCFA</span>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-wa" data-produit="Nzé 500ml" data-prix="4000">
+            Commander via WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <!-- 1L -->
+      <div class="prod-card" data-format="1L">
+        <div class="prod-top">
+          <span class="prod-emoji">🍯</span>
+        </div>
+        <div class="prod-body">
+          <h3>Nzé 1 Litre</h3>
+          <p>Pour les vrais amateurs. Économique et généreux.</p>
+          <div class="prod-prix-row">
+            <div class="prod-prix-box">
+              <span class="prod-label">Prix boutique</span>
+              <span class="prod-prix">7 000 FCFA</span>
+            </div>
+            <div class="prod-prix-box prod-prix-box--abo">
+              <span class="prod-label">Abonné</span>
+              <span class="prod-prix">6 000 FCFA</span>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-wa" data-produit="Nzé 1L" data-prix="7000">
+            Commander via WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <!-- 2L -->
+      <div class="prod-card" data-format="2L">
+        <div class="prod-top">
+          <span class="prod-emoji">🍯</span>
+        </div>
+        <div class="prod-body">
+          <h3>Nzé 2 Litres</h3>
+          <p>Grand format. Parfait pour les familles nombreuses.</p>
+          <div class="prod-prix-row">
+            <div class="prod-prix-box">
+              <span class="prod-label">Prix boutique</span>
+              <span class="prod-prix">—</span>
+            </div>
+            <div class="prod-prix-box prod-prix-box--abo">
+              <span class="prod-label">Abonné</span>
+              <span class="prod-prix">10 500 FCFA</span>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-wa" data-produit="Nzé 2L" data-prix="10500">
+            Commander via WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <!-- 5L B2B -->
+      <div class="prod-card prod-card--b2b" data-format="5L">
+        <div class="prod-top">
+          <span class="prod-emoji">🏢</span>
+          <span class="prod-star prod-star--b2b">B2B</span>
+        </div>
+        <div class="prod-body">
+          <h3>Nzé 5 Litres (Vrac)</h3>
+          <p>Pour restaurants, hôtels, cantines et revendeurs.</p>
+          <div class="prod-prix-row">
+            <div class="prod-prix-box">
+              <span class="prod-label">Prix boutique</span>
+              <span class="prod-prix">—</span>
+            </div>
+            <div class="prod-prix-box prod-prix-box--abo">
+              <span class="prod-label">Prix pro</span>
+              <span class="prod-prix">25 000 FCFA</span>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-wa" data-produit="Nzé 5L vrac" data-prix="25000">
+            Commander via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === FIDÉLITÉ === -->
+<section class="section fidelite">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="tag tag--gold">Programme fidélité</span>
+        <h2>Plus vous achetez, plus vous gagnez.</h2>
+      </div>
+    </div>
+    <div class="fid-grid">
+      <div class="fid-card">
+        <div class="fid-icon">👑</div>
+        <h3>Client VIP</h3>
+        <p>Dès le 3ème achat, obtenez <strong>-10% permanent</strong> sur tous vos pots. Badge VIP affiché sur votre profil.</p>
+      </div>
+      <div class="fid-card">
+        <div class="fid-icon">🎁</div>
+        <h3>5ème achat</h3>
+        <p>Un <strong>250ml offert</strong> pour célébrer votre fidélité. C'est notre façon de dire merci.</p>
+      </div>
+      <div class="fid-card">
+        <div class="fid-icon">🤝</div>
+        <h3>Parrainage</h3>
+        <p>Parrainez un ami : <strong>250ml offert</strong> pour vous. Votre ami reçoit aussi -10% sur sa première commande.</p>
+      </div>
+      <div class="fid-card">
+        <div class="fid-icon">📦</div>
+        <h3>Prépaiement 3 mois</h3>
+        <p>Payez 3 mois d'abonnement d'avance et bénéficiez de <strong>-5% supplémentaire</strong> sur chaque livraison.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === ABONNEMENT === -->
+<section class="section abonnement" id="abonnement">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="tag tag--gold">Abonnement mensuel</span>
+        <h2>Le miel livré chez vous, sans y penser.</h2>
+      </div>
+      <p class="sec-p">Une inscription, livraison automatique chaque mois. Annulation à tout moment.</p>
+    </div>
+
+    <div class="abo-cards">
+      <div class="abo-card">
+        <div class="abo-card-h">
+          <div class="abo-icon">🍯</div>
+          <h3>500ml / mois</h3>
+          <p>Pour les particuliers</p>
+        </div>
+        <div class="abo-prix-box">
+          <span class="abo-prix-gros">3 200</span>
+          <span class="abo-prix-unit">FCFA / mois</span>
+          <span class="abo-prix-economie">Économisez 9 600 FCFA/an</span>
+        </div>
+        <ul class="abo-feats">
+          <li>✓ Livraison mensuelle automatique</li>
+          <li>✓ Prix abonné exclusif</li>
+          <li>✓ Annulation à tout moment</li>
+          <li>✓ Pot consigné réutilisable</li>
+        </ul>
+        <a href="https://wa.me/229XXXXXXXX?text=Bonjour%20Nz%C3%A9%20!%20Je%20souhaite%20m%27abonner%20au%20500ml%20par%20mois." class="btn btn-primary btn-full" target="_blank">
+          S'abonner au 500ml → 
+        </a>
+      </div>
+
+      <div class="abo-card abo-card--pop">
+        <div class="abo-pop">Recommandé</div>
+        <div class="abo-card-h">
+          <div class="abo-icon">🍯🍯</div>
+          <h3>1 Litre / mois</h3>
+          <p>Pour les familles</p>
+        </div>
+        <div class="abo-prix-box">
+          <span class="abo-prix-gros">6 000</span>
+          <span class="abo-prix-unit">FCFA / mois</span>
+          <span class="abo-prix-economie">Économisez 12 000 FCFA/an</span>
+        </div>
+        <ul class="abo-feats">
+          <li>✓ Livraison mensuelle automatique</li>
+          <li>✓ Prix abonné exclusif</li>
+          <li>✓ Annulation à tout moment</li>
+          <li>✓ Pot consigné réutilisable</li>
+          <li>✓ 250ml offert au 3ème mois</li>
+        </ul>
+        <a href="https://wa.me/229XXXXXXXX?text=Bonjour%20Nz%C3%A9%20!%20Je%20souhaite%20m%27abonner%20au%201L%20par%20mois." class="btn btn-primary btn-full" target="_blank">
+          S'abonner au 1L →
+        </a>
+      </div>
+    </div>
+
+    <div class="abo-note">
+      <p>💡 <strong>Prépaiement 3 mois :</strong> -5% supplémentaire. Demandez-nous par WhatsApp !</p>
+    </div>
+  </div>
+</section>
+
+<!-- === À PROPOS === -->
+<section class="section apropos" id="apropos">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="tag">Notre histoire</span>
+        <h2>De la ruche béninoise à votre table.</h2>
+      </div>
+    </div>
+    <div class="apropos-grid">
+      <div class="apropos-text">
+        <p class="apropos-p">Nzé — qui signifie « abeille » en langue fon — est né d'une conviction : le Bénin produit l'un des meilleurs miels d'Afrique de l'Ouest, mais il reste méconnu des Béninois eux-mêmes.</p>
+        <p class="apropos-p">Notre fondateur, <strong>Koffi Houndjo</strong>, apiculteur de troisième génération à <strong>Bembéréké</strong> (Borgou), s'est associé à des jeunes de Cotonou pour créer un circuit court : du miel pur, récolté en savane, mis en pot à la main, livré en ville.</p>
+        <div class="apropos-chiffres">
+          <div class="ap-chiffre">
+            <span class="ap-num">12</span>
+            <span class="ap-lbl">apiculteurs partenaires</span>
+          </div>
+          <div class="ap-chiffre">
+            <span class="ap-num">3</span>
+            <span class="ap-lbl">régions de récolte</span>
+          </div>
+          <div class="ap-chiffre">
+            <span class="ap-num">0%</span>
+            <span class="ap-lbl">sucre ajouté</span>
+          </div>
+        </div>
+      </div>
+      <div class="apropos-values">
+        <div class="ap-value">
+          <span class="ap-value-icon">🌿</span>
+          <h4>100% naturel</h4>
+          <p>Jamais chauffé, jamais filtré, jamais coupé. Notre miel sort tel qu'il est dans la ruche.</p>
+        </div>
+        <div class="ap-value">
+          <span class="ap-value-icon">📍</span>
+          <h4>Entièrement traçable</h4>
+          <p>Chaque pot porte le nom de l'apiculteur et la zone de récolte. Vous savez exactement d'où vient votre miel.</p>
+        </div>
+        <div class="ap-value">
+          <span class="ap-value-icon">🤝</span>
+          <h4>Commerce équitable</h4>
+          <p>Nos apiculteurs sont payés 30% au-dessus du prix du marché. C'est notre engagement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === TÉMOIGNAGES === -->
+<section class="section temoignages">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="tag tag--gold">Ils nous aiment</span>
+        <h2>Ce que disent nos clients.</h2>
+      </div>
+    </div>
+    <div class="tem-grid">
+      <div class="tem-card">
+        <div class="tem-stars">★★★★★</div>
+        <blockquote>"Depuis que j'ai découvert Nzé, je n'achète plus de miel au marché. La différence de qualité est incomparable."</blockquote>
+        <div class="tem-author">
+          <span class="tem-avatar">M</span>
+          <div>
+            <strong>Mariam B.</strong>
+            <small>Cotonou · Abonnée 500ml</small>
+          </div>
+        </div>
+      </div>
+      <div class="tem-card tem-card--dark">
+        <div class="tem-stars">★★★★★</div>
+        <blockquote>"Je suis nutritionniste et je recommande Nzé à tous mes patients. C'est le seul miel au Bénin dont je peux garantir la pureté."</blockquote>
+        <div class="tem-author">
+          <span class="tem-avatar tem-avatar--gold">P</span>
+          <div>
+            <strong>Dr. Paulin A.</strong>
+            <small>Porto-Novo · Client pro</small>
+          </div>
+        </div>
+      </div>
+      <div class="tem-card">
+        <div class="tem-stars">★★★★★</div>
+        <blockquote>"L'abonnement, c'est la meilleure décision. Le miel arrive chaque début de mois, je n'ai plus à y penser."</blockquote>
+        <div class="tem-author">
+          <span class="tem-avatar">F</span>
+          <div>
+            <strong>Fatimatou Z.</strong>
+            <small>Parakou · Abonnée 1L</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === CONTACT === -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="tag">Contact</span>
+        <h2>On vous répond sous 24h.</h2>
+      </div>
+      <p class="sec-p">Vous pouvez aussi nous écrire directement sur <a href="https://wa.me/229XXXXXXXX" class="contact-wa-link">WhatsApp →</a></p>
+    </div>
+    <div class="contact-grid">
+      <form class="contact-form" id="contactForm">
+        <input type="text" placeholder="Votre nom" required>
+        <input type="tel" placeholder="Votre téléphone" required>
+        <input type="text" placeholder="Quartier / Ville">
+        <select required>
+          <option value="">Format souhaité</option>
+          <option>250ml</option>
+          <option>500ml</option>
+          <option>1 litre</option>
+          <option>2 litres</option>
+          <option>5 litres (vrac)</option>
+          <option>Abonnement 500ml/mois</option>
+          <option>Abonnement 1L/mois</option>
+        </select>
+        <textarea rows="3" placeholder="Votre message (optionnel)"></textarea>
+        <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+      </form>
+      <div class="contact-infos">
+        <div class="ci">
+          <strong>📍</strong>
+          <div>
+            <span class="ci-lbl">Livraison</span>
+            <p>Cotonou, Porto-Novo, Parakou</p>
+          </div>
+        </div>
+        <div class="ci">
+          <strong>📱</strong>
+          <div>
+            <span class="ci-lbl">WhatsApp</span>
+            <p><a href="https://wa.me/229XXXXXXXX">+229 XX XX XX XX</a></p>
+          </div>
+        </div>
+        <div class="ci">
+          <strong>📬</strong>
+          <div>
+            <span class="ci-lbl">Email</span>
+            <p>bonjour@nze-miel.bj</p>
+          </div>
+        </div>
+        <div class="ci">
+          <strong>🕐</strong>
+          <div>
+            <span class="ci-lbl">Commandes</span>
+            <p>Traitées sous 24h · Livraison en 48h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === CTA FINAL === -->
+<section class="section cta">
+  <div class="container cta-inner">
+    <span class="tag tag--gold">Prêt à goûter la différence ?</span>
+    <h2>Commandez votre premier pot<br>et recevez-le en 48h.</h2>
+    <p>Première commande : 250ml offert avec le code <strong>BIENVENUE</strong>.</p>
+    <div class="cta-btns">
+      <a href="#boutique" class="btn btn-primary btn-l">Commander maintenant <span class="btn-arr">→</span></a>
+      <a href="https://wa.me/229XXXXXXXX" class="btn btn-outline btn-l" target="_blank">Écrire sur WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- === FOOTER === -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="logo">
+        <span class="logo-m">Nzé</span>
+        <span class="logo-s">Miel du Bénin</span>
+      </a>
+      <p>Miel 100% naturel, traçable, jamais coupé au sucre.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="/">Accueil</a>
+      <a href="#boutique">Boutique</a>
+      <a href="#abonnement">Abonnement</a>
+      <a href="#apropos">Histoire</a>
+    </div>
+    <div class="footer-col">
+      <h4>Infos</h4>
+      <a href="#contact">Contact</a>
+      <a href="#">CGV</a>
+      <a href="#">Confidentialité</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="https://wa.me/229XXXXXXXX">WhatsApp</a>
+      <a href="mailto:bonjour@nze-miel.bj">Email</a>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <p>© 2026 Nzé – Miel 100% naturel du Bénin. Fait avec 🐝 du Borgou à Cotonou.</p>
+  </div>
+</footer>
+
+<!-- === WHATSAPP FLOTTANT === -->
+<a href="https://wa.me/229XXXXXXXX" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
