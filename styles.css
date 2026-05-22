@@ -1017,7 +1017,149 @@ h3 { font-size: 20px; }
 @media (prefers-reduced-motion: no-preference) {
   .prod-card, .fid-card, .abo-card, .tem-card, .ap-value {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    transform: translateY(24px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
   }
+  .produits-grid > *, .fid-grid > *, .abo-cards > *, .tem-grid > * {
+    transition-delay: calc(var(--i, 0) * 0.08s) !important;
+  }
+}
+
+/* ─── DARK MODE ─── */
+[data-theme="dark"] {
+  --blanc: #0F0D0A;
+  --noir: #F0EDE8;
+  --gris: #9A8A7A;
+  --gris-light: #5A4A3A;
+  --border: #2A221A;
+  --creme: #1A1510;
+  --shadow: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-l: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .nav.scrolled { background: rgba(15, 13, 10, 0.92); }
+[data-theme="dark"] .hero { background: radial-gradient(ellipse 80% 60% at 70% 30%, rgba(239, 159, 39, 0.06), transparent 60%), radial-gradient(ellipse 50% 70% at 20% 70%, rgba(15, 110, 86, 0.04), transparent 50%), var(--blanc); }
+[data-theme="dark"] .prod-card, [data-theme="dark"] .abo-card, [data-theme="dark"] .ap-value { background: #1A1510; }
+[data-theme="dark"] .prod-card--b2b { background: linear-gradient(180deg, #1A1510, #0F0D0A); }
+[data-theme="dark"] .contact-form input, [data-theme="dark"] .contact-form select, [data-theme="dark"] .contact-form textarea { background: #1A1510; border-color: #2A221A; color: var(--noir); }
+[data-theme="dark"] .abo-card--pop { background: linear-gradient(180deg, #1A1510, rgba(239, 159, 39, 0.04)); }
+
+.dark-toggle {
+  background: none; border: 1.5px solid var(--border); border-radius: 100px;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; transition: all 0.3s var(--ease); flex-shrink: 0;
+}
+.dark-toggle:hover { border-color: var(--ambre); }
+
+/* ─── BACK TO TOP ─── */
+.back-top {
+  position: fixed; bottom: 90px; right: 24px; z-index: 98;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--noir); color: var(--blanc);
+  border: 1.5px solid var(--border); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; opacity: 0; pointer-events: none;
+  transform: translateY(12px); transition: all 0.3s var(--ease);
+}
+.back-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+.back-top:hover { background: var(--ambre); color: var(--noir); border-color: var(--ambre); }
+
+/* ─── QUANTITY SELECTOR ─── */
+.qty-wrap {
+  display: flex; align-items: center; gap: 0;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  overflow: hidden; margin-bottom: 12px;
+}
+.qty-btn {
+  width: 40px; height: 40px; border: none; background: none;
+  font-size: 18px; cursor: pointer; color: var(--gris);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s var(--ease);
+}
+.qty-btn:hover { background: var(--border); }
+.qty-num {
+  width: 48px; text-align: center; font-size: 15px; font-weight: 600;
+  border: none; background: none; color: var(--noir); font-family: var(--sans);
+  -moz-appearance: textfield;
+}
+.qty-num::-webkit-outer-spin-button, .qty-num::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* ─── MOBILE BOTTOM BAR ─── */
+.bottom-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: var(--blanc); border-top: 1px solid var(--border);
+  padding: 8px 0 env(safe-area-inset-bottom, 8px);
+  backdrop-filter: blur(20px);
+}
+.bottom-bar-inner { display: flex; justify-content: space-around; align-items: center; }
+.bottom-link {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 12px; font-size: 10px; color: var(--gris); font-weight: 500;
+  text-decoration: none; transition: color 0.2s var(--ease);
+}
+.bottom-link:hover, .bottom-link.active { color: var(--ambre); }
+.bottom-link span { font-size: 18px; line-height: 1; }
+
+@media (max-width: 768px) {
+  .bottom-bar { display: block; }
+  body { padding-bottom: 64px; }
+  .wa-float { bottom: 80px; }
+  .back-top { bottom: 80px; right: 20px; }
+  .dark-toggle { width: 32px; height: 32px; font-size: 14px; }
+  .hero-visual { display: flex; margin-top: 20px; }
+  .hero-produit { width: 100%; max-width: 320px; }
+  .hero-inner { padding-top: 30px; }
+  .nav-links a:last-child { display: none; }
+}
+
+/* ─── HERO PRODUCT CARD RESPONSIVE ─── */
+@media (min-width: 1025px) {
+  .hero-visual { display: flex; }
+}
+@media (max-width: 1024px) {
+  .hero-visual { display: flex; justify-content: center; margin-top: 24px; }
+}
+
+/* ─── HERO CARD ANIMATION ─── */
+.hero-produit {
+  animation: cardFloat 4s ease-in-out infinite;
+}
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ─── TOAST NOTIFICATION ─── */
+.toast-container {
+  position: fixed; top: 80px; right: 20px; z-index: 200;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.toast {
+  padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 500;
+  background: var(--noir); color: var(--blanc);
+  box-shadow: var(--shadow-l); animation: toastIn 0.3s var(--ease);
+  max-width: 320px;
+}
+.toast--success { border-left: 3px solid var(--vert); }
+.toast--error { border-left: 3px solid #E74C3C; }
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── SKELETON LOADING ─── */
+.skeleton {
+  background: linear-gradient(90deg, var(--border) 25%, transparent 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.5s infinite;
+  border-radius: 6px;
+}
+@keyframes skeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar {
+  position: fixed; top: 0; left: 0; width: 0; height: 3px;
+  background: linear-gradient(90deg, var(--ambre), var(--vert));
+  z-index: 999; transition: width 0.3s var(--ease);
 }
