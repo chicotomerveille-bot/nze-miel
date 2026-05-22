@@ -1,22 +1,12 @@
 {
   "version": 2,
-  "name": "nze-miel",
-  "buildCommand": null,
   "outputDirectory": ".",
-  "framework": "static",
-  "functions": {
-    "api/index.js": {
-      "memory": 256,
-      "maxDuration": 30
-    }
-  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index.js" },
     { "source": "/admin", "destination": "/admin/index.html" },
     { "source": "/admin/(.*)", "destination": "/admin/$1" },
     { "source": "/outil", "destination": "/outil/login.html" },
-    { "source": "/outil/(.*)", "destination": "/outil/$1" },
-    { "source": "/(.*)", "destination": "/$1" }
+    { "source": "/outil/(.*)", "destination": "/outil/$1" }
   ],
   "headers": [
     {
