@@ -1,5 +1,5 @@
 const CFG = window.NZE_CONFIG || {};
-const API = CFG.API_BACKEND_URL || (location.port === '3000' ? '' : 'http://localhost:3000');
+const API = CFG.API_BACKEND_URL || (location.hostname === 'localhost' && location.port !== '3000' ? 'http://localhost:3000' : '');
 const EXTRA_HEADERS = CFG.API_HEADERS || {};
 let refreshInterval = null;
 let currentTab = 'dashboard';

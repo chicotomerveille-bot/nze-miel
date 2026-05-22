@@ -3,12 +3,20 @@
   "name": "nze-miel",
   "buildCommand": null,
   "outputDirectory": ".",
-  "framework": null,
-  "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/outil", "dest": "/outil/login.html" },
-    { "src": "/outil/(.*)", "dest": "/outil/$1" },
-    { "src": "/(.*)", "dest": "/$1" }
+  "framework": "static",
+  "functions": {
+    "api/index.js": {
+      "memory": 256,
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/admin", "destination": "/admin/index.html" },
+    { "source": "/admin/(.*)", "destination": "/admin/$1" },
+    { "source": "/outil", "destination": "/outil/login.html" },
+    { "source": "/outil/(.*)", "destination": "/outil/$1" },
+    { "source": "/(.*)", "destination": "/$1" }
   ],
   "headers": [
     {
